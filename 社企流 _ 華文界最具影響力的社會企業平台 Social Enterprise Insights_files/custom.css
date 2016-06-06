@@ -115,7 +115,7 @@ figure a img {
 /* Base */
 /* header */
 #header {
-  position: fixed;
+  position: absolute;;
   top: 0;
   width: 100%;
   z-index: 600;
@@ -126,11 +126,8 @@ body.simplemenu-enabled #header {
 body.simplemenu-enabled .header-fixed {
   position: fixed !important;
 }
-#header .left {
-  width: 20%;
-}
 #header .right {
-  width: 80%;
+  width: 71.5%;
 }
 #logo {
   width: 150px;
@@ -143,7 +140,7 @@ body.simplemenu-enabled .header-fixed {
 /* header top */
 #header-top {
   color: #fff;
-  background: #eb6100;
+  background:rgb(91,204,235);
 }
 #header-top a {
   color: #fff;
@@ -352,17 +349,19 @@ body[class*="page-search-results"] .page-title {
 /* header main */
 #header-main {
     padding: 10px 0 12px 0;
+        background-color: #8EC31F;
 }
 #site-name {
   display: none;
 }
 #header .right {
-  padding: 20px 6px 0 0;
+  padding: 0px 0px 0px 0;
+  text-align: justify;
 }
 
 /* main menu */
 #nav-nicemenu-3 {
-  float: right;
+  float: center;
   font-size: 1.25em;
   line-height: 1.5;
   margin-right: 20px;
@@ -374,7 +373,9 @@ body[class*="page-search-results"] .page-title {
   text-decoration: none;
 }
 #nav-nicemenu-3 li a {
-  padding: 0 12px;
+  padding: 0 50px;
+  font-size: 30px;
+  color: white;
 }
 #nav-nicemenu-3 ul ul {
   top: 14px;
@@ -2639,7 +2640,7 @@ a.preview-ni-list:hover {
 }
 
 #side-theme-menu .item-list {
-  overflow: auto;
+  overflow: block;
   /* height: 500px; */
   position: absolute;
   top: 0;
@@ -2678,7 +2679,7 @@ a.side-theme-menu-btn {
   border-left: 0;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
-  background: #8c8c8c url(images/arrow_right_mini.png) no-repeat 9px 14px;
+  background:rgb(91,204,235) url(images/arrow_right_mini.png) no-repeat 9px 14px;
   font-size: 1.0625em;
   line-height: 1.2;
 }

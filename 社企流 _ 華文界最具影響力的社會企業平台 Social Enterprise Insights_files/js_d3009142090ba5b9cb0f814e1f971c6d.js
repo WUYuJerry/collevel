@@ -380,13 +380,13 @@ Drupal.locale = { 'strings': { "Unspecified error": "發生不明錯誤", "An er
 		var ua = navigator.userAgent, // Get user agent string.
 		android = false, // Variable for storing android version.
 		iOS = false; // Variable for storing iOS version.
-		
+
 		if ( /Android/.test( ua ) ) { // Detect Android in user agent string.
 			android = ua.substr( ua.indexOf( 'Android' )+8, 3 ); // Set version of Android.
 		} else if ( /(iPhone|iPod|iPad)/.test( ua ) ) { // Detect iOS in user agent string.
 			iOS = ua.substr( ua.indexOf( 'OS ' )+3, 3 ).replace( '_', '.' ); // Set version of iOS.
 		}
-		
+
 		if ( android && android < 3 || iOS && iOS < 5 ) $( 'html' ).addClass( 'sb-static' ); // Add helper class for older versions of Android & iOS.
 
 		// -----------
@@ -395,7 +395,7 @@ Drupal.locale = { 'strings': { "Unspecified error": "發生不明錯誤", "An er
 		// Site container
 		var $site = $( '#sb-site, .sb-site-container' ); // Cache the selector.
 
-		// Left Slidebar	
+		// Left Slidebar
 		if ( $( '.sb-left' ).length ) { // Check if the left Slidebar exists.
 			var $left = $( '.sb-left' ), // Cache the selector.
 			leftActive = false; // Used to check whether the left Slidebar is open or closed.
@@ -406,15 +406,15 @@ Drupal.locale = { 'strings': { "Unspecified error": "發生不明錯誤", "An er
 			var $right = $( '.sb-right' ), // Cache the selector.
 			rightActive = false; // Used to check whether the right Slidebar is open or closed.
 		}
-				
+
 		var init = false, // Initialisation variable.
 		windowWidth = $( window ).width(), // Get width of window.
 		$controls = $( '.sb-toggle-left, .sb-toggle-right, .sb-open-left, .sb-open-right, .sb-close' ), // Cache the control classes.
 		$slide = $( '.sb-slide' ); // Cache users elements to animate.
-		
+
 		// Initailise Slidebars
 		function initialise () {
-			if ( ! settings.disableOver || ( typeof settings.disableOver === 'number' && settings.disableOver >= windowWidth ) ) { // False or larger than window size. 
+			if ( ! settings.disableOver || ( typeof settings.disableOver === 'number' && settings.disableOver >= windowWidth ) ) { // False or larger than window size.
 				init = true; // true enabled Slidebars to open.
 				$( 'html' ).addClass( 'sb-init' ); // Add helper class.
 				if ( settings.hideControlClasses ) $controls.removeClass( 'sb-hide' ); // Remove class just incase Slidebars was originally disabled.
@@ -428,7 +428,7 @@ Drupal.locale = { 'strings': { "Unspecified error": "發生不明錯誤", "An er
 			}
 		}
 		initialise();
-		
+
 		// Inline CSS
 		function css() {
 			// Site container height.
@@ -436,19 +436,19 @@ Drupal.locale = { 'strings': { "Unspecified error": "發生不明錯誤", "An er
 			var siteHeight = parseInt( $site.css( 'height' ), 10 ),
 			htmlHeight = parseInt( $( 'html' ).css( 'height' ), 10 );
 			if ( siteHeight < htmlHeight ) $site.css( 'minHeight', $( 'html' ).css( 'height' ) ); // Test height for vh support..
-			
+
 			// Custom Slidebar widths.
 			if ( $left && $left.hasClass( 'sb-width-custom' ) ) $left.css( 'width', $left.attr( 'data-sb-width' ) ); // Set user custom width.
 			if ( $right && $right.hasClass( 'sb-width-custom' ) ) $right.css( 'width', $right.attr( 'data-sb-width' ) ); // Set user custom width.
-			
+
 			// Set off-canvas margins for Slidebars with push and overlay animations.
 			if ( $left && ( $left.hasClass( 'sb-style-push' ) || $left.hasClass( 'sb-style-overlay' ) ) ) $left.css( 'marginLeft', '-' + $left.css( 'width' ) );
 			if ( $right && ( $right.hasClass( 'sb-style-push' ) || $right.hasClass( 'sb-style-overlay' ) ) ) $right.css( 'marginRight', '-' + $right.css( 'width' ) );
-			
+
 			// Site scroll locking.
 			if ( settings.scrollLock ) $( 'html' ).addClass( 'sb-scroll-lock' );
 		}
-		
+
 		// Resize Functions
 		$( window ).resize( function () {
 			var resizedWindowWidth = $( window ).width(); // Get resized window width.
@@ -476,10 +476,10 @@ Drupal.locale = { 'strings': { "Unspecified error": "發生不明錯誤", "An er
 
 		// Animate mixin.
 		function animate( object, amount, side ) {
-			
+
 			// Choose selectors depending on animation style.
 			var selector;
-			
+
 			if ( object.hasClass( 'sb-style-push' ) ) {
 				selector = $site.add( object ).add( $slide ); // Push - Animate site, Slidebar and user elements.
 			} else if ( object.hasClass( 'sb-style-overlay' ) ) {
@@ -487,7 +487,7 @@ Drupal.locale = { 'strings': { "Unspecified error": "發生不明錯誤", "An er
 			} else {
 				selector = $site.add( $slide ); // Reveal - Animate site and user elements.
 			}
-			
+
 			// Apply animation
 			if ( animation === 'translate' ) {
 				if ( amount === '0px' ) {
@@ -513,7 +513,7 @@ Drupal.locale = { 'strings': { "Unspecified error": "發生不明錯誤", "An er
 				properties[side] = amount;
 				selector.stop().animate( properties, 400 ); // Stop any current jQuery animation before starting another.
 			}
-			
+
 			// Remove animation
 			function removeAnimation () {
 				selector.removeAttr( 'style' );
@@ -549,7 +549,7 @@ Drupal.locale = { 'strings': { "Unspecified error": "發生不明錯誤", "An er
 				}
 			}
 		}
-			
+
 		// Close either Slidebar
 		function close( url, target ) {
 			if ( leftActive || rightActive ) { // If a Slidebar is open.
@@ -561,7 +561,7 @@ Drupal.locale = { 'strings': { "Unspecified error": "發生不明錯誤", "An er
 					animate( $right, '0px', 'right' ); // Animation
 					rightActive = false;
 				}
-			
+
 				setTimeout( function () { // Wait for closing animation to finish.
 					$( 'html' ).removeClass( 'sb-active sb-active-left sb-active-right' ); // Remove active classes.
 					if ( $left ) $left.removeClass( 'sb-active' );
@@ -573,7 +573,7 @@ Drupal.locale = { 'strings': { "Unspecified error": "發生不明錯誤", "An er
 				}, 400 );
 			}
 		}
-		
+
 		// Toggle either Slidebar
 		function toggle( side ) {
 			if ( side === 'left' && $left ) { // If left Slidebar is called and in use.
@@ -594,7 +594,7 @@ Drupal.locale = { 'strings': { "Unspecified error": "發生不明錯誤", "An er
 
 		// ---------
 		// 007 - API
-		
+
 		this.slidebars = {
 			open: open, // Maps user variable name to the open method.
 			close: close, // Maps user variable name to the close method.
@@ -626,48 +626,48 @@ Drupal.locale = { 'strings': { "Unspecified error": "發生不明錯誤", "An er
 
 		// ----------------
 		// 008 - User Input
-		
+
 		function eventHandler( event, selector ) {
 			event.stopPropagation(); // Stop event bubbling.
 			event.preventDefault(); // Prevent default behaviour.
 			if ( event.type === 'touchend' ) selector.off( 'click' ); // If event type was touch, turn off clicks to prevent phantom clicks.
 		}
-		
+
 		// Toggle left Slidebar
 		$( '.sb-toggle-left' ).on( 'touchend click', function ( event ) {
 			eventHandler( event, $( this ) ); // Handle the event.
 			toggle( 'left' ); // Toggle the left Slidbar.
 		} );
-		
+
 		// Toggle right Slidebar
 		$( '.sb-toggle-right' ).on( 'touchend click', function ( event ) {
 			eventHandler( event, $( this ) ); // Handle the event.
 			toggle( 'right' ); // Toggle the right Slidbar.
 		} );
-		
+
 		// Open left Slidebar
 		$( '.sb-open-left' ).on( 'touchend click', function ( event ) {
 			eventHandler( event, $( this ) ); // Handle the event.
 			open( 'left' ); // Open the left Slidebar.
 		} );
-		
+
 		// Open right Slidebar
 		$( '.sb-open-right' ).on( 'touchend click', function ( event ) {
 			eventHandler( event, $( this ) ); // Handle the event.
 			open( 'right' ); // Open the right Slidebar.
 		} );
-		
+
 		// Close Slidebar
 		$( '.sb-close' ).on( 'touchend click', function ( event ) {
 			if ( $( this ).is( 'a' ) || $( this ).children().is( 'a' ) ) { // Is a link or contains a link.
 				if ( event.type === 'click' ) { // Make sure the user wanted to follow the link.
 					event.stopPropagation(); // Stop events propagating
 					event.preventDefault(); // Stop default behaviour
-					
+
 					var link = ( $( this ).is( 'a' ) ? $( this ) : $( this ).find( 'a' ) ), // Get the link selector.
 					url = link.attr( 'href' ), // Get the link url.
 					target = ( link.attr( 'target' ) ? link.attr( 'target' ) : '_self' ); // Set target, default to _self if not provided
-					
+
 					close( url, target ); // Close Slidebar and pass link target.
 				}
 			} else { // Just a normal control class.
@@ -675,7 +675,7 @@ Drupal.locale = { 'strings': { "Unspecified error": "發生不明錯誤", "An er
 				close(); // Close Slidebar.
 			}
 		} );
-		
+
 		// Close Slidebar via site
 		$site.on( 'touchend click', function ( event ) {
 			if ( settings.siteClose && ( leftActive || rightActive ) ) { // If settings permit closing by site and left or right Slidebar is open.
@@ -683,7 +683,7 @@ Drupal.locale = { 'strings': { "Unspecified error": "發生不明錯誤", "An er
 				close(); // Close it.
 			}
 		} );
-		
+
 	}; // End Slidebars function.
 
 } ) ( jQuery );;
@@ -694,26 +694,26 @@ Drupal.locale = { 'strings': { "Unspecified error": "發生不明錯誤", "An er
 $(document).ready(function() {
 
 	$('#debug-trigger').click(function(e) {
-	
+
 		e.preventDefault();
 		$('#debug').toggleClass('open');
-	
+
 	});
-	
+
 	$('#debug-nav').find('a').click(function(e) {
-	
+
 		e.preventDefault();
-		
+
 		var $self = $(this),
 			action = $self.attr('rel'),
 			arg = $self.attr('data-arg'),
 			arg = arg || null;
-			
+
 			$('#content').infinitescroll(action,arg);
-			
-	
+
+
 	});
-	
+
 });;
 /*global jQuery: true */
 
@@ -1564,11 +1564,11 @@ Drupal.dateTweaks = {
 /**
  * When document loads, process the date field and set event handlers
  */
-$(document).ready(function() { 
+$(document).ready(function() {
   // Process evey combo
   $('.datetweaks-datecombo').each(function(){
     var combo = $(this);
-    
+
     // When the "from" field changes, automatically adjust the "to" field
     combo.find('.datetweaks-value input').change(function(){
       Drupal.dateTweaks.setTo(combo);
@@ -1586,10 +1586,10 @@ $(document).ready(function() {
     }).bind('time-change', function(){
       Drupal.dateTweaks.setDuration(combo);
     });
-    
+
     // Set the initial duration
     Drupal.dateTweaks.setDuration(combo);
-    
+
     // When All Day checkbox changes, process all day
     var allDay = combo.find('.datetweaks-all-day');
     allDay.click(function(){
@@ -1601,13 +1601,13 @@ $(document).ready(function() {
       Drupal.dateTweaks.setAllDay(combo);
     }
   });
-  
+
   // If set, change every "time" field to a dropdown timepicker
   if (Drupal.settings.datetweaks.use_dropdown == true) {
     $('.datetweaks-time').each(function() {
       var timeField = $(this);
       var date = Date.parseDate(timeField.val(), timeField.attr('format'));
-      
+
       // Convert to compatible format for timepicker
       var timeFormat = timeField.attr('format').replace('i', 'mm').replace('A', 'p');
       timeField.timepicker({timeFormat: timeFormat, interval : 15, startTime : date});
@@ -1661,12 +1661,12 @@ Drupal.dateTweaks.setAllDay = function (combo) {
   var dateField2 = combo.find('.datetweaks-value2 .datetweaks-date');
   var timeField1 = combo.find('.datetweaks-value .datetweaks-time');
   var timeField2 = combo.find('.datetweaks-value2 .datetweaks-time');
-  
+
   if (allDay.attr('checked')) {
     this.restore[id] = {
-      date1 : dateField1.val(), 
-      time1 : timeField1.val(), 
-      date2 : dateField2.val(), 
+      date1 : dateField1.val(),
+      time1 : timeField1.val(),
+      date2 : dateField2.val(),
       time2 : timeField2.val()
     };
     var format = dateField1.attr('format') + ' h:i';
@@ -1735,7 +1735,7 @@ Drupal.dateTweaks.getDateValue = function(value) {
 ;
 ﻿/*
  * http://code.google.com/p/flexible-js-formatting/
- * 
+ *
  * Copyright (C) 2004 Baron Schwartz <baron at sequent dot org>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -2211,7 +2211,7 @@ Date.patterns = {
  * @file dhtml_menu.js
  * The Javascript code for DHTML Menu
  */
- 
+
 Drupal.dhtmlMenu = {};
 
 /**
@@ -2244,8 +2244,8 @@ Drupal.behaviors.dhtmlMenu = function() {
   }
 
   /* Add jQuery effects and listeners to all menu items.
-   * The ~ (sibling) selector is unidirectional and selects 
-   * only the latter element, so we must use siblings() to get 
+   * The ~ (sibling) selector is unidirectional and selects
+   * only the latter element, so we must use siblings() to get
    * back to the link element.
    */
    $('ul.menu li.dhtml-menu:not(.leaf,.no-dhtml)').each(function() {
@@ -2313,7 +2313,7 @@ Drupal.dhtmlMenu.toggleMenu = function(li) {
 
       // Siblings are all open menus that are neither parents nor children of this menu.
       $(li).find('li').addClass('own-children-temp');
-	  
+
       // If the relativity option is on, select only the siblings that have the same parent
       if (effects.relativity) {
         var siblings = $(li).parent().find('li.expanded').not('.own-children-temp').not(':has(#' + id + ')');
@@ -2864,7 +2864,7 @@ Drupal.behaviors.viewsSlideshowSingleFrame = function (context) {
         else {
           classes += ' even';
         }
-        
+
         var theme = 'viewsSlideshowPager' + settings.pager_type;
         return Drupal.theme.prototype[theme] ? Drupal.theme(theme, classes, idx, slide, settings) : '';
       },
@@ -2892,7 +2892,7 @@ Drupal.behaviors.viewsSlideshowSingleFrame = function (context) {
       cleartype:(settings.ie.cleartype == 'true')? true : false,
       cleartypeNoBg:(settings.ie.cleartypenobg == 'true')? true : false
     }
-    
+
     // Set the starting slide if we are supposed to remember the slide
     if (settings.remember_slide) {
       var startSlide = readCookie(settings.vss_id);
@@ -2927,7 +2927,7 @@ Drupal.behaviors.viewsSlideshowSingleFrame = function (context) {
 
     // Pause on clicking of the slide.
     if (settings.pause_on_click == 1) {
-      $('#views_slideshow_singleframe_teaser_section_' + settings.vss_id).click(function() { 
+      $('#views_slideshow_singleframe_teaser_section_' + settings.vss_id).click(function() {
         viewsSlideshowSingleFramePause(settings);
       });
     }
@@ -2962,7 +2962,7 @@ Drupal.behaviors.viewsSlideshowSingleFrame = function (context) {
             value = new Function(func[1].match(/(\w+)/g), func[2]);
           }
         }
-	
+
         // Call both functions if prop was set previously.
         if (typeof(value) == "function" && prop in settings.opts) {
           var callboth = function(before_func, new_func) {
@@ -2978,14 +2978,14 @@ Drupal.behaviors.viewsSlideshowSingleFrame = function (context) {
         }
       }
     }
-    
+
     $(settings.targetId).cycle(settings.opts);
 
     // Start Paused
     if (settings.start_paused) {
       viewsSlideshowSingleFramePause(settings);
     }
-    
+
     // Pause if hidden.
     if (settings.pause_when_hidden) {
       var checkPause = function(settings) {
@@ -3000,12 +3000,12 @@ Drupal.behaviors.viewsSlideshowSingleFrame = function (context) {
           viewsSlideshowSingleFramePause(settings);
         }
       }
-     
+
       // Check when scrolled.
       $(window).scroll(function() {
        checkPause(settings);
       });
-      
+
       // Check when the window is resized.
       $(window).resize(function() {
         checkPause(settings);
@@ -3018,7 +3018,7 @@ Drupal.behaviors.viewsSlideshowSingleFrame = function (context) {
     if (settings.controls > 0) {
       // Show controls for people who have js enabled browsers.
       $('#views_slideshow_singleframe_controls_' + settings.vss_id).show();
-      
+
       $('#views_slideshow_singleframe_playpause_' + settings.vss_id).click(function(e) {
       	if (settings.paused) {
       	  viewsSlideshowSingleFrameResume(settings);
@@ -3032,7 +3032,7 @@ Drupal.behaviors.viewsSlideshowSingleFrame = function (context) {
   });
 }
 
-// Pause the slideshow 
+// Pause the slideshow
 viewsSlideshowSingleFramePause = function (settings) {
   //make Resume translatable
   var resume = Drupal.t('Resume');
@@ -3085,8 +3085,8 @@ function IsNumeric(sText) {
   var IsNumber=true;
   var Char;
 
-  for (var i=0; i < sText.length && IsNumber == true; i++) { 
-    Char = sText.charAt(i); 
+  for (var i=0; i < sText.length && IsNumber == true; i++) {
+    Char = sText.charAt(i);
     if (ValidChars.indexOf(Char) == -1) {
       IsNumber = false;
     }
@@ -3150,13 +3150,13 @@ function viewsSlideshowSingleFrameIsVisible(elem, type, amountVisible) {
   var elemWidth = $(elem).width();
   var elemRight = elemLeft + elemWidth;
   var elemArea = elemHeight * elemWidth;
-  
+
   // Calculate what's hiding in the slide.
   var missingLeft = 0;
   var missingRight = 0;
   var missingTop = 0;
   var missingBottom = 0;
-  
+
   // Find out how much of the slide is missing from the left.
   if (elemLeft < docViewLeft) {
     missingLeft = docViewLeft - elemLeft;
@@ -3166,7 +3166,7 @@ function viewsSlideshowSingleFrameIsVisible(elem, type, amountVisible) {
   if (elemRight > docViewRight) {
     missingRight = elemRight - docViewRight;
   }
-  
+
   // Find out how much of the slide is missing from the top.
   if (elemTop < docViewTop) {
     missingTop = docViewTop - elemTop;
@@ -3176,7 +3176,7 @@ function viewsSlideshowSingleFrameIsVisible(elem, type, amountVisible) {
   if (elemBottom > docViewBottom) {
     missingBottom = elemBottom - docViewBottom;
   }
-  
+
   // If there is no amountVisible defined then check to see if the whole slide
   // is visible.
   if (type == 'full') {
@@ -3187,7 +3187,7 @@ function viewsSlideshowSingleFrameIsVisible(elem, type, amountVisible) {
   }
   else if(type == 'vertical') {
     var verticalShowing = elemHeight - missingTop - missingBottom;
-    
+
     // If user specified a percentage then find out if the current shown percent
     // is larger than the allowed percent.
     // Otherwise check to see if the amount of px shown is larger than the
@@ -3201,7 +3201,7 @@ function viewsSlideshowSingleFrameIsVisible(elem, type, amountVisible) {
   }
   else if(type == 'horizontal') {
     var horizontalShowing = elemWidth - missingLeft - missingRight;
-    
+
     // If user specified a percentage then find out if the current shown percent
     // is larger than the allowed percent.
     // Otherwise check to see if the amount of px shown is larger than the
@@ -3215,7 +3215,7 @@ function viewsSlideshowSingleFrameIsVisible(elem, type, amountVisible) {
   }
   else if(type == 'area') {
     var areaShowing = (elemWidth - missingLeft - missingRight) * (elemHeight - missingTop - missingBottom);
-    
+
     // If user specified a percentage then find out if the current shown percent
     // is larger than the allowed percent.
     // Otherwise check to see if the amount of px shown is larger than the
@@ -3246,7 +3246,7 @@ Drupal.behaviors.viewsSlideshowThumbnailHover = function (context) {
     var settings = Drupal.settings.viewsSlideshowThumbnailHover[fullId];
     settings.targetId = '#' + $(fullId + " :first").attr('id');
 		settings.paused = false;
-		
+
     settings.opts = {
       speed:settings.speed,
       timeout:parseInt(settings.timeout),
@@ -3257,8 +3257,8 @@ Drupal.behaviors.viewsSlideshowThumbnailHover = function (context) {
       allowPagerClickBubble:(settings.pager_event=='click')? false : true,
       pager:(settings.pager_event == 'hoverIntent') ? null : '#views_slideshow_breakout_teasers_' + settings.vss_id,
       nowrap:parseInt(settings.nowrap),
-      pagerAnchorBuilder:(settings.pager_event == 'hoverIntent') ? null : function(idx, slide) { 
-        return '#views_slideshow_thumbnailhover_div_breakout_teaser_' + settings.vss_id + '_' + idx; 
+      pagerAnchorBuilder:(settings.pager_event == 'hoverIntent') ? null : function(idx, slide) {
+        return '#views_slideshow_thumbnailhover_div_breakout_teaser_' + settings.vss_id + '_' + idx;
       },
       after:function(curr, next, opts) {
         // Used for Image Counter.
@@ -3280,7 +3280,7 @@ Drupal.behaviors.viewsSlideshowThumbnailHover = function (context) {
           //set the container's height to that of the current slide
           $(this).parent().animate({height: $ht});
         }
-        
+
         var currId = (currId=$(current).attr('id')).substring(currId.lastIndexOf('_')+1)
         var nextId = (nextId=$(next).attr('id')).substring(nextId.lastIndexOf('_')+1)
         $('#views_slideshow_thumbnailhover_div_breakout_teaser_' + settings.vss_id + '_' + currId).removeClass('activeSlide');
@@ -3322,11 +3322,11 @@ Drupal.behaviors.viewsSlideshowThumbnailHover = function (context) {
 
     // Pause on clicking of the slide.
     if (settings.pause_on_click == 1) {
-      $('#views_slideshow_thumbnailhover_teaser_section_' + settings.vss_id).click(function() { 
+      $('#views_slideshow_thumbnailhover_teaser_section_' + settings.vss_id).click(function() {
         viewsSlideshowThumbnailHoverPause(settings);
       });
     }
-    
+
     // Add additional settings.
 		if (settings.advanced != "\n") {
       var advanced = settings.advanced.split("\n");
@@ -3357,7 +3357,7 @@ Drupal.behaviors.viewsSlideshowThumbnailHover = function (context) {
             value = new Function(func[1].match(/(\w+)/g), func[2]);
           }
         }
-	
+
         // Call both functions if prop was set previously.
         if (typeof(value) == "function" && prop in settings.opts) {
           var callboth = function(before_func, new_func) {
@@ -3380,7 +3380,7 @@ Drupal.behaviors.viewsSlideshowThumbnailHover = function (context) {
     if (settings.start_paused) {
       viewsSlideshowThumbnailHoverPause(settings);
     }
-    
+
     // Pause if hidden.
     if (settings.pause_when_hidden) {
       var checkPause = function(settings) {
@@ -3395,12 +3395,12 @@ Drupal.behaviors.viewsSlideshowThumbnailHover = function (context) {
           viewsSlideshowThumbnailHoverPause(settings);
         }
       }
-     
+
       // Check when scrolled.
       $(window).scroll(function() {
        checkPause(settings);
       });
-      
+
       // Check when window is resized.
       $(window).resize(function() {
         checkPause(settings);
@@ -3409,7 +3409,7 @@ Drupal.behaviors.viewsSlideshowThumbnailHover = function (context) {
 
     // Show image count for people who have js enabled.
     $('#views_slideshow_thumbnailhover_image_count_' + settings.vss_id).show();
-    
+
     if (settings.pager_event == 'hoverIntent') {
       $('#views_slideshow_thumbnailhover_breakout_teasers_' + settings.vss_id + ' .views_slideshow_thumbnailhover_div_breakout_teaser').each(function(i,obj) {
         $(obj).hoverIntent(
@@ -3433,7 +3433,7 @@ Drupal.behaviors.viewsSlideshowThumbnailHover = function (context) {
     if (settings.controls > 0) {
       // Show controls for people who have js enabled browsers.
       $('#views_slideshow_thumbnailhover_controls_' + settings.vss_id).show();
-      
+
       $('#views_slideshow_thumbnailhover_playpause_' + settings.vss_id).click(function(e) {
         if (settings.paused) {
           viewsSlideshowThumbnailHoverResume(settings);
@@ -3447,7 +3447,7 @@ Drupal.behaviors.viewsSlideshowThumbnailHover = function (context) {
   });
 }
 
-// Pause the slideshow 
+// Pause the slideshow
 viewsSlideshowThumbnailHoverPause = function (settings) {
   //make Resume translatable
   var resume = Drupal.t('Resume');
@@ -3484,8 +3484,8 @@ function IsNumeric(sText) {
   var IsNumber=true;
   var Char;
 
-  for (var i=0; i < sText.length && IsNumber == true; i++) { 
-    Char = sText.charAt(i); 
+  for (var i=0; i < sText.length && IsNumber == true; i++) {
+    Char = sText.charAt(i);
     if (ValidChars.indexOf(Char) == -1) {
       IsNumber = false;
     }
@@ -3548,13 +3548,13 @@ function viewsSlideshowThumbnailHoverIsVisible(elem, type, amountVisible) {
   var elemWidth = $(elem).width();
   var elemRight = elemLeft + elemWidth;
   var elemArea = elemHeight * elemWidth;
-  
+
   // Calculate what's hiding in the slide.
   var missingLeft = 0;
   var missingRight = 0;
   var missingTop = 0;
   var missingBottom = 0;
-  
+
   // Find out how much of the slide is missing from the left.
   if (elemLeft < docViewLeft) {
     missingLeft = docViewLeft - elemLeft;
@@ -3564,7 +3564,7 @@ function viewsSlideshowThumbnailHoverIsVisible(elem, type, amountVisible) {
   if (elemRight > docViewRight) {
     missingRight = elemRight - docViewRight;
   }
-  
+
   // Find out how much of the slide is missing from the top.
   if (elemTop < docViewTop) {
     missingTop = docViewTop - elemTop;
@@ -3574,7 +3574,7 @@ function viewsSlideshowThumbnailHoverIsVisible(elem, type, amountVisible) {
   if (elemBottom > docViewBottom) {
     missingBottom = elemBottom - docViewBottom;
   }
-  
+
   // If there is no amountVisible defined then check to see if the whole slide
   // is visible.
   if (type == 'full') {
@@ -3585,7 +3585,7 @@ function viewsSlideshowThumbnailHoverIsVisible(elem, type, amountVisible) {
   }
   else if(type == 'vertical') {
     var verticalShowing = elemHeight - missingTop - missingBottom;
-    
+
     // If user specified a percentage then find out if the current shown percent
     // is larger than the allowed percent.
     // Otherwise check to see if the amount of px shown is larger than the
@@ -3599,7 +3599,7 @@ function viewsSlideshowThumbnailHoverIsVisible(elem, type, amountVisible) {
   }
   else if(type == 'horizontal') {
     var horizontalShowing = elemWidth - missingLeft - missingRight;
-    
+
     // If user specified a percentage then find out if the current shown percent
     // is larger than the allowed percent.
     // Otherwise check to see if the amount of px shown is larger than the
@@ -3613,7 +3613,7 @@ function viewsSlideshowThumbnailHoverIsVisible(elem, type, amountVisible) {
   }
   else if(type == 'area') {
     var areaShowing = (elemWidth - missingLeft - missingRight) * (elemHeight - missingTop - missingBottom);
-    
+
     // If user specified a percentage then find out if the current shown percent
     // is larger than the allowed percent.
     // Otherwise check to see if the amount of px shown is larger than the
@@ -3657,7 +3657,7 @@ function viewsSlideshowThumbnailHoverIsVisible(elem, type, amountVisible) {
 					o.retainPath=($.inArray($$[0],o.$path)>-1);
 					$$.hideSuperfishUl();
 					if (o.$path.length && $$.parents(['li.',o.hoverClass].join('')).length<1){over.call(o.$path);}
-				},o.delay);	
+				},o.delay);
 			},
 			getMenu = function($menu){
 				var menu = $menu.parents(['ul.',c.menuClass,':first'].join(''))[0];
@@ -3665,7 +3665,7 @@ function viewsSlideshowThumbnailHoverIsVisible(elem, type, amountVisible) {
 				return menu;
 			},
 			addArrow = function($a){ $a.addClass(c.anchorClass).append($arrow.clone()); };
-			
+
 		return this.each(function() {
 			var s = this.serial = sf.o.length;
 			var o = $.extend({},sf.defaults,op);
@@ -3674,20 +3674,20 @@ function viewsSlideshowThumbnailHoverIsVisible(elem, type, amountVisible) {
 					.filter('li:has(ul)').removeClass(o.pathClass);
 			});
 			sf.o[s] = sf.op = o;
-			
+
 			$('li:has(ul)',this)[($.fn.hoverIntent && !o.disableHI) ? 'hoverIntent' : 'hover'](over,out).each(function() {
 				if (o.autoArrows) addArrow( $('>a:first-child',this) );
 			})
 			.not('.'+c.bcClass)
 				.hideSuperfishUl();
-			
+
 			var $a = $('a',this);
 			$a.each(function(i){
 				var $li = $a.eq(i).parents('li');
 				$a.eq(i).focus(function(){over.call($li);}).blur(function(){out.call($li);});
 			});
 			o.onInit.call(this);
-			
+
 		}).each(function() {
 			var menuClasses = [c.menuClass];
 			if (sf.op.dropShadows  && !($.browser.msie && $.browser.version < 7)) menuClasses.push(c.shadowClass);
@@ -3750,7 +3750,7 @@ function viewsSlideshowThumbnailHoverIsVisible(elem, type, amountVisible) {
 })(jQuery);
 ;
 /* Copyright (c) 2006 Brandon Aaron (http://brandonaaron.net)
- * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) 
+ * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php)
  * and GPL (http://www.opensource.org/licenses/gpl-license.php) licenses.
  *
  * $LastChangedDate: 2007-06-19 20:25:28 -0500 (Tue, 19 Jun 2007) $
@@ -3762,7 +3762,7 @@ function viewsSlideshowThumbnailHoverIsVisible(elem, type, amountVisible) {
 ﻿/**
 * hoverIntent r5 // 2007.03.27 // jQuery 1.1.2+
 * <http://cherne.net/brian/resources/jquery.hoverIntent.html>
-* 
+*
 * @param  f  onMouseOver function || An object with configuration options
 * @param  g  onMouseOut function  || Nothing (use configuration options object)
 * @author    Brian Cherne <brian@cherne.net>
@@ -4270,7 +4270,7 @@ if (typeof jq1110 !== 'undefined') {
       var $sidebar = $(".jq-sidebar.left");
 
       if ($("body").hasClass("page-front")) {
-        $sidebar.sidebar().trigger("sidebar:open");
+        $sidebar.sidebar().trigger("sidebar:closed");
       } else {
         $sidebar.sidebar();
       }
@@ -4324,7 +4324,7 @@ var FORMALIZE = (function($, window, document, undefined) {
 		},
 		// FORMALIZE.init
 		init: {
-			detect_webkit: function() {			
+			detect_webkit: function() {
 				if (!WEBKIT) {
 					return;
 				}
