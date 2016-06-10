@@ -628,11 +628,11 @@ div[id^="block-views-about"] .block-inner {
 div[id^="block-views-about"] .block-title,
 .title-wrapper .block-title,
 .block-title-main {
+  display: inline-block;
   margin-bottom: 15px;
   font-size: 2em;
-  border-bottom: 5px solid rgb(218,241,169);
+  border-bottom: 5px solid #ccc;
   font-weight: bold;
-  letter-spacing: 20px;
 }
 .section-about .block-title,
 #block-netivism_sei-milestone .block-title,
@@ -1348,14 +1348,14 @@ a.theme-info-link {
 #sidebar-second-inner {
 }
 #sidebar-second .block .content {
-  padding: 30px 0;
+  padding: 0;
 }
 #sidebar-second-content {
   background: #eee;
   padding: 0 0 25px 0;
 }
 .page-front #sidebar-second {
-  /*margin-top: 115px;*/
+  margin-top: 115px;
 }
 .page-reviews #sidebar-second {
   margin-top: 108px;
