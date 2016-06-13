@@ -1,4 +1,8 @@
 /* Global */
+#video{
+align: "middle";
+}
+
 body {
   padding-top: 138px;
   color: #111;
@@ -1785,6 +1789,7 @@ body[class*="page-article-list"] #sidebar-second,
 }
 .slick-no-dots .slick-track {
   margin: 0 auto;
+  text-align: center;
 }
 .slick-no-dots {
   padding: 10px 0 0 0;
